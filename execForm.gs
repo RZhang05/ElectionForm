@@ -55,6 +55,7 @@ function generate() {
   
   for(i=1;i<values.length;i++) {
     var line = [];
+    var cnt = 0;
     for(j=0;j<values[i].length;j++) {
       var a = values[i][j];
       if(a!=="") {
@@ -66,11 +67,12 @@ function generate() {
         if(j==5) socd.push(a);
         if(j==6) spird.push(a);
         if(j==7) cc.push(a);
-      }
+      } else cnt++;
       line.push(a);
       if(a!=="") line.push(0);
       else line.push("");
     }
+    if(cnt == values[i].length) break;
     endpoint.appendRow(line);
   }
   p.push('No Vote'); vp.push('No Vote'); t.push('No Vote'); 
