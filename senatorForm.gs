@@ -23,12 +23,22 @@ function generate() {
   var range = sheet.getDataRange();
   var values = range.getValues();
   var parentFolder = DriveApp.getFolderById('1_J5QVewVApOJKh5FGNszah0wt9dlkzW7');
-  var newFolder = parentFolder.createFolder(year + ' Grade 9 Election');
+  
+  var ui = SpreadsheetApp.getUi();
+  var grade = "";
+  
+  do {
+    var response = ui.prompt('Grade Selection', 'Enter a grade', ui.ButtonSet.OK_CANCEL);
+    grade = response.getResponseText().trim();
+  } while(response.getSelectedButton() == ui.Button.CANCEL || response.getSelectedButton() == ui.Button.CLOSE);
+  
+  
+  var newFolder = parentFolder.createFolder(year + ' Grade ' + grade + ' Election');
   
   //stores old sheet data and resets to base
   var sheets = ss.getSheets();
   if(sheets.length>2) {
-    Logger.log('Archived ' + (year-1) + ' Grade 9 Election');
+    Logger.log('Archived ' + (year-1) + ' Grade ' + grade + ' Election');
     var archive = SpreadsheetApp.create((year-1) + ' Archive');
     sheets[1].copyTo(archive);
     sheets[2].copyTo(archive);
@@ -51,15 +61,15 @@ function generate() {
   }
     
   //make the form
-  makeOurForm(names, newFolder.getId());
+  makeOurForm(names, grade, newFolder.getId());
 }
 
 //function which creates the form
-function makeOurForm(names, fileId) {
+function makeOurForm(names, grade, fileId) {
   var ss = SpreadsheetApp.getActive();
   Logger.log('Starting to create form');
   
-  var name = 'Grade 9 Student Senator Ballot';
+  var name = 'Grade ' + grade + ' Student Senator Ballot';
   var form = FormApp.create(name);
   
   //make sure only one response per user is allowed
