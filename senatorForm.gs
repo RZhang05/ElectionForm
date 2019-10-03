@@ -122,7 +122,10 @@ function moveForm(name, fileId) {
 //function which runs when a response is recieved
 function onFormSubmit(e) {
   var ss = SpreadsheetApp.getActive();
-  ss.getSheets()[0].setName('Responses');
+  var sheets = ss.getSheets();
+  if(sheets[0].getName()!=='Responses') {
+    ss.getSheets()[0].setName('Responses');
+  }
   var sheet = ss.getSheetByName('Candidates');
   var range = sheet.getDataRange();
   var values = range.getValues();
