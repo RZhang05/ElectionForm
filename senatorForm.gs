@@ -177,15 +177,6 @@ function tallyVotes() {
   var v = r.getValues();
   var r2 = input.getDataRange();
   var v2 = r2.getValues();
-  var sheet = ss.getSheetByName('Candidates');
-  var range = sheet.getDataRange();
-  var values = range.getValues();
-  
-  //retrieve student numbers of valid participants
-  var valid = {};
-  for(i=1;i<values.length;i++) {
-    valid[values[i][1]] = 1;
-  }
   
   //clear spreadsheet
   output.clear();
@@ -203,8 +194,6 @@ function tallyVotes() {
     var num = v[i][1];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][2];
         if(name1===name) {
           num++;
@@ -219,8 +208,6 @@ function tallyVotes() {
     var num = v[i][3];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][3];
         if(name1===name) {
           num++;
@@ -235,8 +222,6 @@ function tallyVotes() {
     var num = v[i][5];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][4];
         if(name1===name) {
           num++;
@@ -251,8 +236,6 @@ function tallyVotes() {
     var num = v[i][7];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][5];
         if(name1===name) {
           num++;
@@ -267,8 +250,6 @@ function tallyVotes() {
     var num = v[i][9];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][6];
         if(name1===name) {
           num++;
@@ -283,8 +264,6 @@ function tallyVotes() {
     var num = v[i][11];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][7];
         if(name1===name) {
           num++;
@@ -299,8 +278,6 @@ function tallyVotes() {
     var num = v[i][13];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][8];
         if(name1===name) {
           num++;
@@ -315,8 +292,6 @@ function tallyVotes() {
     var num = v[i][15];
     if(name !== "") {
       for(j=1;j<v2.length;j++) {
-        var email = v2[j][1];
-        if(valid[email]===undefined) continue;
         var name1 = v2[j][9];
         if(name1===name) {
           num++;
